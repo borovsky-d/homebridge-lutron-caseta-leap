@@ -1,5 +1,5 @@
 {
-  "pluginAlias": "LutronCasetaLeap",
+  "pluginAlias": "LutronCasetaLeapFast",
   "pluginType": "platform",
   "customUi": true,
   "singular": true,
