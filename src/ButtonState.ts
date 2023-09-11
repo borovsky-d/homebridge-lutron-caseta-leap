@@ -148,12 +148,16 @@ export class ButtonTracker {
             case ButtonState.IDLE: {
                 if (action === 'Press') {
                     this.state = ButtonState.DOWN;
+                    this.log.debug(`btrk ${this.href} now in state DOWN`);
                     if (this.longPressDisabled) {
-                        this.log.info(`button ${this.href} long press disabled. suppressing.`);
+                        if (this.doublePressDisabled) {
+                            this.shortPressCB();
+                        } else {
+                            this.log.info(`button ${this.href} long press disabled. suppressing.`);
+                        }
                     } else {
                         this.timer = setTimeout(longPressTimeoutHandler, this.longPressTimeout);
                     }
-                    this.log.debug(`btrk ${this.href} now in state DOWN`);
                 } else {
                     // no-op
                     this.log.debug(`btrk ${this.href} no-op IDLE action ${action}`);
