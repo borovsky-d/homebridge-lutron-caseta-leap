@@ -151,7 +151,9 @@ export class ButtonTracker {
                     this.log.debug(`btrk ${this.href} now in state DOWN`);
                     if (this.longPressDisabled) {
                         if (this.doublePressDisabled) {
+                            this.log.info(`button ${this.href} short press.`);
                             this.shortPressCB();
+                            this.reset();
                         } else {
                             this.log.info(`button ${this.href} long press disabled. suppressing.`);
                         }
@@ -168,14 +170,16 @@ export class ButtonTracker {
             case ButtonState.DOWN: {
                 if (action === 'Release') {
                     this.state = ButtonState.UP;
-                    if (this.timer) {
-                        clearTimeout(this.timer);
-                        this.log.debug(`btrk ${this.href} cleared timer`);
+                    if (!this.doublePressDisabled) {
+                        if (this.timer) {
+                            clearTimeout(this.timer);
+                            this.log.debug(`btrk ${this.href} cleared timer`);
+                        }
+                        this.timer = setTimeout(() => {
+                            doublePressTimeoutHandler();
+                        }, this.doublePressTimeout);
+                        this.log.debug(`btrk ${this.href} now in UP state`);
                     }
-                    this.timer = setTimeout(() => {
-                        doublePressTimeoutHandler();
-                    }, this.doublePressTimeout);
-                    this.log.debug(`btrk ${this.href} now in UP state`);
                 } else {
                     // action == "Press"
                     this.log.error(`btrk invalid action ${action} for state ${this.state}. resetting`);
