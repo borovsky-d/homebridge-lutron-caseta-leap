@@ -1,15 +1,15 @@
 {
     "displayName": "Lutron Caseta LEAP",
-    "name": "homebridge-lutron-caseta-leap",
+    "name": "homebridge-lutron-caseta-leap-fast",
     "version": "2.5.1",
     "description": "Support for the Lutron Caseta Smart Bridge 2",
     "license": "Apache-2.0",
     "repository": {
         "type": "git",
-        "url": "git://github.com/thenewwazoo/homebridge-lutron-caseta-leap.git"
+        "url": "git://github.com/borovsky/homebridge-lutron-caseta-leap.git"
     },
     "bugs": {
-        "url": "https://github.com/thenewwazoo/homebridge-lutron-caseta-leap/issues"
+        "url": "https://github.com/borovsky/homebridge-lutron-caseta-leap/issues"
     },
     "engines": {
         "node": ">=10.17.0",
